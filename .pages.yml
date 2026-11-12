@@ -63,11 +63,23 @@ content:
     format: json
     fields:
       - { name: tagline, label: Tagline (for search engines), type: string }
+      - { name: hero_kicker, label: Small label above the logo (leave empty to hide), type: string }
+      - { name: hero_text, label: Text under the logo, type: text }
       - { name: hero_image, label: Hero photo (optional, shown behind the slash), type: image }
       - { name: showreel, label: Showreel video link (YouTube or Vimeo; leave empty to hide the play button), type: string }
-      - { name: marquee, label: Moving text under the hero, type: string }
+      - name: tape
+        label: Moving tape words
+        type: object
+        list: true
+        fields:
+          - { name: text, label: Words, type: string }
       - { name: work_title, label: Work title (white), type: string }
       - { name: work_title_accent, label: Work title (burgundy), type: string }
+      - { name: statement_label, label: Big statement label, type: string }
+      - { name: statement, label: Big statement (white), type: string }
+      - { name: statement_accent, label: Big statement (burgundy), type: string }
+      - { name: process_title, label: Process title (white), type: string }
+      - { name: process_title_accent, label: Process title (burgundy), type: string }
       - name: process
         label: Process steps (in order)
         type: object

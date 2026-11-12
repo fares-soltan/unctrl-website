@@ -15,9 +15,11 @@
 <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body data-page="project">
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"><span>View</span></div>
 
 <header class="site-head">
-  <div class="wrap">
+  <div class="bar">
     <a class="brand" href="/" aria-label="UNCTRL home">
       <img class="icon" src="/assets/brand/unctrl-icon-gradient.svg" alt="">
       <img class="word" src="/assets/brand/unctrl-logo-gradient.svg" alt="UNCTRL">
@@ -25,7 +27,7 @@
     <nav class="nav" aria-label="Main">
       <a href="/#work">Work</a>
       <a href="/#process">Process</a>
-      <a class="keep" href="/#contact">Contact</a>
+      <a class="cta" href="/#contact">Start a project</a>
     </nav>
   </div>
 </header>
@@ -33,7 +35,10 @@
 <main id="project"></main>
 
 <footer class="site-foot">
-  <div class="wrap"><span id="foot-copy"></span><nav id="foot-social" aria-label="Social"></nav></div>
+  <div class="wrap">
+    <div class="foot-big" aria-hidden="true">UNCTRL</div>
+    <div class="row"><span id="foot-copy"></span><nav id="foot-social" aria-label="Social"></nav></div>
+  </div>
 </footer>
 
 <script src="/assets/app.js"></script>

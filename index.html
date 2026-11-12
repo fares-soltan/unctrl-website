@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>UNCTRL | Creative marketing studio</title>
-<meta name="description" content="UNCTRL is a creative marketing studio. Branding, content, production and campaigns for brands that would rather be remembered than be safe.">
+<meta name="description" content="UNCTRL is a creative marketing studio. We build brands people remember, make content they stop for, and run the media that turns attention into growth.">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -21,9 +21,11 @@
 <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body data-page="home">
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"><span>View</span></div>
 
 <header class="site-head">
-  <div class="wrap">
+  <div class="bar">
     <a class="brand" href="/" aria-label="UNCTRL home">
       <img class="icon" src="/assets/brand/unctrl-icon-gradient.svg" alt="">
       <img class="word" src="/assets/brand/unctrl-logo-gradient.svg" alt="UNCTRL">
@@ -31,7 +33,7 @@
     <nav class="nav" aria-label="Main">
       <a href="#work">Work</a>
       <a href="#process">Process</a>
-      <a class="keep" href="#contact">Contact</a>
+      <a class="cta" href="#contact">Start a project</a>
     </nav>
   </div>
 </header>
@@ -39,33 +41,51 @@
 <main>
   <div class="hero">
     <div class="hero-card">
-      <span class="hero-slash two" aria-hidden="true"></span>
-      <span class="hero-slash" aria-hidden="true"></span>
+      <span class="glow g1" aria-hidden="true"></span>
+      <span class="hero-slash two intro" aria-hidden="true"></span>
+      <span class="hero-slash intro" aria-hidden="true"></span>
       <div class="hero-inner">
-        <h1><img class="hero-logo" src="/assets/brand/unctrl-logo-tagline-gradient.svg" alt="UNCTRL"><span class="sr-only" id="tagline-sr"></span></h1>
-        <div class="hero-actions" id="hero-actions" hidden>
-          <button class="play" id="play" type="button" aria-label="Play showreel"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></button>
-          <span class="play-label">Play showreel</span>
+        <span class="hero-kicker label intro" id="kicker"><i></i><span id="kicker-text"></span></span>
+        <h1 class="intro d1"><img class="hero-logo" src="/assets/brand/unctrl-logo-tagline-gradient.svg" alt="UNCTRL"><span class="sr-only" id="tagline-sr"></span></h1>
+        <p class="hero-line intro d2" id="hero-line"></p>
+        <div class="hero-actions intro d3">
+          <a class="btn btn-solid" href="#work">See the work</a>
+          <button class="play" id="play" type="button" hidden><span class="ring"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg></span>Play showreel</button>
         </div>
       </div>
-      <a class="scroll-cue" href="#work">Scroll</a>
+      <a class="scroll-cue" href="#work"><span></span>Scroll</a>
     </div>
   </div>
 
-  <div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
+  <div class="tapes" aria-hidden="true">
+    <div class="tape t2"><div class="tape-track" id="tape2"></div></div>
+    <div class="tape t1"><div class="tape-track" id="tape1"></div></div>
+  </div>
 
   <section id="work">
     <div class="wrap">
       <div class="sec-head">
-        <h2 class="display" id="work-title"></h2>
-        <div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
+        <h2 class="display reveal" id="work-title"></h2>
+        <div class="filters fade" id="filters" role="group" aria-label="Filter projects"></div>
       </div>
       <div class="work-grid" id="work-grid"></div>
     </div>
   </section>
 
+  <section class="statement">
+    <span class="glow g1" aria-hidden="true"></span>
+    <div class="wrap">
+      <span class="label" id="statement-label"></span>
+      <h2 class="display" id="statement"></h2>
+    </div>
+  </section>
+
   <section class="process" id="process">
-    <div class="wrap"><div class="steps" id="steps"></div></div>
+    <span class="glow g2" aria-hidden="true"></span>
+    <div class="wrap">
+      <div class="sec-head"><h2 class="display reveal" id="process-title"></h2></div>
+      <div class="steps" id="steps"></div>
+    </div>
   </section>
 
   <section class="clients" id="clients" hidden>
@@ -76,27 +96,32 @@
   </section>
 
   <section class="contact" id="contact">
-    <span class="slash-bg" aria-hidden="true"></span>
-    <div class="wrap">
-      <div>
-        <h2 class="display" id="contact-title"></h2>
-        <p class="lead" id="contact-text"></p>
-        <div class="direct" id="direct"></div>
+    <div class="panel">
+      <span class="slash-bg" aria-hidden="true"></span>
+      <div class="wrap grid">
+        <div>
+          <h2 class="display reveal" id="contact-title"></h2>
+          <p class="lead fade" id="contact-text"></p>
+          <div class="direct fade" id="direct"></div>
+        </div>
+        <form class="cform fade" id="cform" novalidate>
+          <label>Name<input name="name" autocomplete="name" required></label>
+          <label>Brand<input name="brand" autocomplete="organization"></label>
+          <label class="full">Email or phone<input name="contact" autocomplete="email" required></label>
+          <label class="full">What do you need?<textarea name="message" required></textarea></label>
+          <button class="btn btn-solid" type="submit">Send</button>
+          <p class="form-msg" id="form-msg" role="status"></p>
+        </form>
       </div>
-      <form class="cform" id="cform" novalidate>
-        <label>Name<input name="name" autocomplete="name" required></label>
-        <label>Brand<input name="brand" autocomplete="organization"></label>
-        <label class="full">Email or phone<input name="contact" autocomplete="email" required></label>
-        <label class="full">What do you need?<textarea name="message" required></textarea></label>
-        <button class="btn btn-solid" type="submit">Send</button>
-        <p class="form-msg" id="form-msg" role="status"></p>
-      </form>
     </div>
   </section>
 </main>
 
 <footer class="site-foot">
-  <div class="wrap"><span id="foot-copy"></span><nav id="foot-social" aria-label="Social"></nav></div>
+  <div class="wrap">
+    <div class="foot-big" aria-hidden="true">UNCTRL</div>
+    <div class="row"><span id="foot-copy"></span><nav id="foot-social" aria-label="Social"></nav></div>
+  </div>
 </footer>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Showreel">
