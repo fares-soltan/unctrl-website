@@ -12,13 +12,13 @@
     {
       "binding": "DB",
       "database_name": "unctrl-db",
-      "database_id": "PASTE_D1_DATABASE_ID_HERE"
+      "database_id": "9ca3dbd2-e56a-4378-96ac-9fa5ee4047a9"
     }
   ],
   "kv_namespaces": [
     {
       "binding": "MEDIA",
-      "id": "PASTE_KV_NAMESPACE_ID_HERE"
+      "id": "3672fbecceb8415a846367711e4e64b5"
     }
   ],
   "observability": { "enabled": true }
