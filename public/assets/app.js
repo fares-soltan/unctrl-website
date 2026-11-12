@@ -47,6 +47,12 @@ function socials(s) {
 function fillFooter(s) {
   const f = $("#foot-copy"); if (f) f.textContent = s.copyright || "";
   const n = $("#foot-social"); if (n) n.innerHTML = socials(s);
+  const c = $("#foot-contact");
+  if (c) c.innerHTML = [
+    s.email && `<a href="mailto:${esc(s.email)}">${esc(s.email)}</a>`,
+    s.phone && `<a href="tel:${esc(s.phone.replace(/\s/g, ""))}">${esc(s.phone)}</a>`,
+    s.whatsapp && `<a href="https://wa.me/${esc(s.whatsapp)}" target="_blank" rel="noopener">WhatsApp</a>`,
+  ].filter(Boolean).join("");
 }
 
 /* ---------- shared effects ---------- */

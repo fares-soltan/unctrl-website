@@ -20,7 +20,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css">
 </head>
-<body data-page="home">
+<body id="top" data-page="home">
 <div class="grain" aria-hidden="true"></div>
 <div class="cursor" aria-hidden="true"><span>View</span></div>
 
@@ -120,8 +120,18 @@
 
 <footer class="site-foot">
   <div class="wrap">
-    <div class="foot-big" aria-hidden="true">UNCTRL</div>
-    <div class="row"><span id="foot-copy"></span><nav id="foot-social" aria-label="Social"></nav></div>
+    <div class="foot-top">
+      <h2 class="display">Let's make<br><span class="accent">some noise.</span></h2>
+      <a class="btn btn-solid" id="foot-mail" href="/#contact">Start a project</a>
+    </div>
+    <div class="foot-cols">
+      <div><span class="label">Navigate</span><a href="/#work">Work</a><a href="/#process">Process</a><a href="/#contact">Contact</a></div>
+      <div><span class="label">Say hello</span><div id="foot-contact"></div></div>
+      <div><span class="label">Follow</span><div id="foot-social"></div></div>
+      <div class="foot-up"><a href="#top" class="up" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a></div>
+    </div>
+    <img class="foot-logo" src="/assets/brand/unctrl-logo-gradient.svg" alt="" aria-hidden="true">
+    <div class="row"><span id="foot-copy"></span><span>Cairo, Egypt</span></div>
   </div>
 </footer>
 
