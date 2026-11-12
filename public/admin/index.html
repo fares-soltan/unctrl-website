@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin | UNCTRL</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+
+<!-- login -->
+<section id="login" class="login" hidden>
+  <form id="login-form" class="login-card">
+    <img src="/assets/brand/unctrl-logo-gradient.svg" alt="UNCTRL" class="login-logo">
+    <h1>Admin</h1>
+    <label>Password<input type="password" name="password" autocomplete="current-password" required autofocus></label>
+    <button class="btn primary" type="submit">Log in</button>
+    <p class="msg err" id="login-msg" role="alert"></p>
+  </form>
+</section>
+
+<!-- app -->
+<div id="app" class="app" hidden>
+  <aside class="side">
+    <a href="/" class="side-logo" target="_blank" rel="noopener"><img src="/assets/brand/unctrl-logo-gradient.svg" alt="UNCTRL"></a>
+    <nav>
+      <button data-tab="work" class="on">Portfolio</button>
+      <button data-tab="settings">Site content</button>
+      <button data-tab="messages">Messages <span class="badge" id="unread" hidden></span></button>
+    </nav>
+    <div class="side-foot">
+      <a href="/" target="_blank" rel="noopener" class="btn ghost small">View site</a>
+      <button id="logout" class="btn ghost small">Log out</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <!-- portfolio -->
+    <section data-panel="work">
+      <header class="top"><div><h2>Portfolio</h2><p class="sub">Use the arrows to change the order. Projects at the top show first on the website.</p></div><button class="btn primary" id="add-work">Add project</button></header>
+      <div id="work-list" class="list"></div>
+    </section>
+
+    <!-- settings -->
+    <section data-panel="settings" hidden>
+      <header class="top"><div><h2>Site content</h2><p class="sub">Text, links and images used across the website.</p></div><button class="btn primary" id="save-settings">Save changes</button></header>
+      <form id="settings-form" class="settings"></form>
+    </section>
+
+    <!-- messages -->
+    <section data-panel="messages" hidden>
+      <header class="top"><div><h2>Messages</h2><p class="sub">Everything sent from the contact form on the website.</p></div></header>
+      <div id="msg-list" class="list"></div>
+    </section>
+  </main>
+</div>
+
+<!-- project editor -->
+<div class="drawer-bg" id="drawer-bg" hidden></div>
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Edit project">
+  <form id="work-form">
+    <header class="drawer-head"><h3 id="drawer-title">New project</h3><button type="button" class="btn ghost small" id="drawer-close">Close</button></header>
+    <div class="drawer-body">
+      <label>Title (big text on the card)<input name="title" required maxlength="120" placeholder="Brand identity"></label>
+      <div class="row2">
+        <label>Client<input name="client" maxlength="120"></label>
+        <label>Year<input name="year" maxlength="10" placeholder="2026"></label>
+      </div>
+      <div class="row2">
+        <label>Category (filter button)<input name="category" list="cats" maxlength="60" placeholder="Branding"></label>
+        <label>Link name<input name="slug" maxlength="80" placeholder="made from the title"></label>
+      </div>
+      <datalist id="cats"><option>Branding</option><option>Content</option><option>Campaigns</option><option>Social media</option><option>Production</option></datalist>
+      <div class="row2">
+        <label>Card size<select name="size"><option value="normal">Normal</option><option value="tall">Tall</option></select></label>
+        <label>Card colour (no cover)<select name="style"><option>Auto</option><option>Dark</option><option>Burgundy</option><option>Light</option></select></label>
+      </div>
+      <div class="field"><span class="flabel">Cover image</span><div class="img-field" data-name="cover"></div></div>
+      <label>Short summary<textarea name="summary" rows="2" maxlength="600"></textarea></label>
+      <label>Full description<textarea name="description" rows="6" maxlength="8000"></textarea></label>
+      <label>Video link (YouTube or Vimeo)<input name="video" maxlength="500" placeholder="https://youtube.com/watch?v=..."></label>
+      <div class="field"><span class="flabel">More images</span><div class="gallery" id="gallery"></div>
+        <label class="btn ghost small upload-btn">Add images<input type="file" accept="image/*" multiple id="gallery-input" hidden></label></div>
+    </div>
+    <footer class="drawer-foot">
+      <p class="msg" id="work-msg" role="status"></p>
+      <button class="btn primary" type="submit">Save project</button>
+    </footer>
+  </form>
+</aside>
+
+<div class="toast" id="toast" role="status"></div>
+<script src="/admin/admin.js"></script>
+</body>
+</html>

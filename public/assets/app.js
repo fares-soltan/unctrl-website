@@ -7,6 +7,18 @@ const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
 const ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>';
 const STAR = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.6 9.4L24 12l-9.4 2.6L12 24l-2.6-9.4L0 12l9.4-2.6z"/></svg>';
 
+// content comes from the backend; falls back to the starter JSON if the API is unavailable
+async function getContent() {
+  try {
+    const r = await fetch("/api/content", { cache: "no-store" });
+    if (!r.ok) throw new Error(r.status);
+    return await r.json();
+  } catch (e) {
+    const [settings, work] = await Promise.all([getJSON("/content/settings.json"), getJSON("/content/work.json")]);
+    return { settings, work };
+  }
+}
+
 async function getJSON(path) {
   const res = await fetch(path, { cache: "no-cache" });
   if (!res.ok) throw new Error(path + " " + res.status);
@@ -117,7 +129,7 @@ function tape(words, el) {
 }
 
 async function initHome() {
-  const [s, work] = await Promise.all([getJSON("content/settings.json"), getJSON("content/work.json")]);
+  const { settings: s, work } = await getContent();
   fillFooter(s);
 
   // hero
@@ -194,28 +206,22 @@ function initForm(s) {
     msg.className = "form-msg"; msg.textContent = "";
     const d = Object.fromEntries(new FormData(form));
     if (!d.name || !d.contact || !d.message) { msg.className = "form-msg err"; msg.textContent = "Add your name, a way to reach you and what you need."; return; }
-    const text = `New enquiry from the website\nName: ${d.name}\nBrand: ${d.brand || "-"}\nContact: ${d.contact}\n\n${d.message}`;
-    if (s.form_key) {
-      const btn = form.querySelector("button"); btn.disabled = true; btn.textContent = "Sending";
-      try {
-        const r = await fetch("https://api.web3forms.com/submit", { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({ access_key: s.form_key, subject: `Website enquiry: ${d.brand || d.name}`, from_name: "UNCTRL website", name: d.name, brand: d.brand, contact: d.contact, message: d.message }) });
-        const j = await r.json();
-        if (!j.success) throw new Error(j.message);
-        form.reset(); msg.textContent = "Sent. We'll get back to you within one working day.";
-      } catch (err) {
-        msg.className = "form-msg err"; msg.textContent = "Couldn't send. Email us directly at " + (s.email || "") + ".";
-      } finally { btn.disabled = false; btn.textContent = "Send"; }
-      return;
-    }
-    if (s.whatsapp) { window.open(`https://wa.me/${s.whatsapp}?text=${encodeURIComponent(text)}`, "_blank"); return; }
-    location.href = `mailto:${s.email}?subject=${encodeURIComponent("Website enquiry: " + (d.brand || d.name))}&body=${encodeURIComponent(text)}`;
+    const btn = form.querySelector("button"); btn.disabled = true; btn.textContent = "Sending";
+    try {
+      const r = await fetch("/api/contact", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(d) });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(j.error || "Couldn't send.");
+      form.reset(); msg.textContent = "Sent. We'll get back to you within one working day.";
+    } catch (err) {
+      msg.className = "form-msg err";
+      msg.textContent = (err.message && err.message !== "Failed to fetch" ? err.message + " " : "") + (s.email ? "You can also email us at " + s.email + "." : "");
+    } finally { btn.disabled = false; btn.textContent = "Send"; }
   };
 }
 
 /* ---------- project page ---------- */
 async function initProject() {
-  const [s, work] = await Promise.all([getJSON("content/settings.json"), getJSON("content/work.json")]);
+  const { settings: s, work } = await getContent();
   fillFooter(s);
   const slug = new URLSearchParams(location.search).get("p");
   const i = Math.max(0, work.findIndex(w => w.slug === slug));
