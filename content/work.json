@@ -1,0 +1,72 @@
+[
+  {
+    "slug": "brand-identity",
+    "title": "Brand identity",
+    "client": "Client name",
+    "category": "Branding",
+    "year": "2026",
+    "size": "normal",
+    "cover": "",
+    "summary": "Sample project. Replace it from the control panel.",
+    "description": "Tell the story of the project here: what the client needed, what you made, and what changed after it went live.",
+    "video": "",
+    "gallery": [],
+    "style": "Dark"
+  },
+  {
+    "slug": "social-media-reel",
+    "title": "Social media",
+    "client": "Client name",
+    "category": "Content",
+    "year": "2026",
+    "size": "tall",
+    "cover": "",
+    "summary": "Sample project with a video link.",
+    "description": "Replace this text with the project details.",
+    "video": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
+    "gallery": [],
+    "style": "Auto"
+  },
+  {
+    "slug": "content-production",
+    "title": "Content & production",
+    "client": "Client name",
+    "category": "Content",
+    "year": "2026",
+    "size": "normal",
+    "cover": "",
+    "summary": "Sample project. Replace it from the control panel.",
+    "description": "Replace this text with the project details.",
+    "video": "",
+    "gallery": [],
+    "style": "Light"
+  },
+  {
+    "slug": "campaign",
+    "title": "Campaign",
+    "client": "Client name",
+    "category": "Campaigns",
+    "year": "2025",
+    "size": "normal",
+    "cover": "",
+    "summary": "Sample project. Replace it from the control panel.",
+    "description": "Replace this text with the project details.",
+    "video": "",
+    "gallery": [],
+    "style": "Burgundy"
+  },
+  {
+    "slug": "rebrand-launch",
+    "title": "Rebrand & launch",
+    "client": "Client name",
+    "category": "Branding",
+    "year": "2025",
+    "size": "normal",
+    "cover": "",
+    "summary": "Sample project. Replace it from the control panel.",
+    "description": "Replace this text with the project details.",
+    "video": "",
+    "gallery": [],
+    "style": "Dark"
+  }
+]

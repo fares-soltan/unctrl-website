@@ -1,0 +1,27 @@
+{
+  "tagline": "Creative marketing studio",
+  "hero_image": "",
+  "showreel": "",
+  "marquee": "Ideas without limits",
+  "work_title": "The work",
+  "work_title_accent": "speaks.",
+  "process": [
+    { "label": "Break", "title": "Break the pattern", "text": "We find what everyone else is doing, then go the other way." },
+    { "label": "Build", "title": "Build the idea", "text": "One clear idea, turned into a brand, content and production people remember." },
+    { "label": "Perform", "title": "Make it perform", "text": "Media, testing and monthly reporting, so creativity turns into results." }
+  ],
+  "clients_title": "Brands we've worked with",
+  "clients": [],
+  "contact_title": "Ready to",
+  "contact_title_accent": "stand out?",
+  "contact_text": "Tell us about your brand. We reply within one working day.",
+  "email": "info@unctrl-eg.com",
+  "phone": "",
+  "whatsapp": "",
+  "form_key": "",
+  "instagram": "https://instagram.com/",
+  "behance": "https://behance.net/",
+  "linkedin": "https://linkedin.com/",
+  "tiktok": "",
+  "copyright": "© 2026 Uncontrolled Group"
+}

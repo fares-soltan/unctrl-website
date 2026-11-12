@@ -1,0 +1,98 @@
+media:
+  input: images/uploads
+  output: /images/uploads
+
+content:
+  - name: work
+    label: Portfolio
+    type: file
+    path: content/work.json
+    format: json
+    list: true
+    fields:
+      - name: title
+        label: Title (big text on the card, e.g. Brand identity)
+        type: string
+        required: true
+      - name: slug
+        label: Link name (lowercase letters and dashes only, e.g. coffee-launch)
+        type: string
+        required: true
+      - name: client
+        label: Client name
+        type: string
+      - name: category
+        label: Category (used by the filter buttons)
+        type: select
+        options:
+          values: [Branding, Content, Campaigns, Social media, Production]
+      - name: year
+        label: Year
+        type: string
+      - name: size
+        label: Card size
+        type: select
+        options:
+          values: [normal, tall]
+      - name: style
+        label: Card colour when there is no cover image
+        type: select
+        options:
+          values: [Auto, Dark, Burgundy, Light]
+      - name: cover
+        label: Cover image (optional)
+        type: image
+      - name: summary
+        label: Short summary
+        type: text
+      - name: description
+        label: Full description
+        type: text
+      - name: video
+        label: Video link (YouTube or Vimeo)
+        type: string
+      - name: gallery
+        label: More images
+        type: image
+        list: true
+
+  - name: settings
+    label: Site content
+    type: file
+    path: content/settings.json
+    format: json
+    fields:
+      - { name: tagline, label: Tagline (for search engines), type: string }
+      - { name: hero_image, label: Hero photo (optional, shown behind the slash), type: image }
+      - { name: showreel, label: Showreel video link (YouTube or Vimeo; leave empty to hide the play button), type: string }
+      - { name: marquee, label: Moving text under the hero, type: string }
+      - { name: work_title, label: Work title (white), type: string }
+      - { name: work_title_accent, label: Work title (burgundy), type: string }
+      - name: process
+        label: Process steps (in order)
+        type: object
+        list: true
+        fields:
+          - { name: label, label: Small label, type: string }
+          - { name: title, label: Title, type: string }
+          - { name: text, label: Text, type: text }
+      - { name: clients_title, label: Clients title, type: string }
+      - name: clients
+        label: Client logos (section shows once you add logos)
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Brand name, type: string }
+          - { name: logo, label: Logo, type: image }
+      - { name: contact_title, label: Contact title (white), type: string }
+      - { name: contact_title_accent, label: Contact title (burgundy), type: string }
+      - { name: contact_text, label: Contact text, type: text }
+      - { name: email, label: Email, type: string }
+      - { name: phone, label: Phone, type: string }
+      - { name: whatsapp, label: "WhatsApp number (digits with country code, e.g. 201001234567)", type: string }
+      - { name: form_key, label: "Web3Forms access key (sends the contact form to your email)", type: string }
+      - { name: instagram, label: Instagram link, type: string }
+      - { name: behance, label: Behance link, type: string }
+      - { name: linkedin, label: LinkedIn link, type: string }
+      - { name: tiktok, label: TikTok link, type: string }
+      - { name: copyright, label: Footer text, type: string }
