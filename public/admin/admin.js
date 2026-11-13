@@ -131,6 +131,7 @@ function openEditor(w) {
   ["title", "client", "year", "category", "slug", "summary", "description", "video"].forEach(k => el(k).value = w ? (w[k] || "") : "");
   el("size").value = w ? (w.size || "normal") : "normal";
   el("style").value = w ? (w.style || "Auto") : "Auto";
+  el("featured").checked = w ? !!w.featured : true;
   imageField($('[data-name="cover"]'), w ? w.cover : "");
   gallery = w ? [...(w.gallery || [])] : []; drawGallery();
   $("#work-msg").textContent = "";
@@ -147,6 +148,7 @@ $("#work-form").onsubmit = async e => {
   e.preventDefault();
   const f = e.target, btn = f.querySelector('[type="submit"]');
   const body = Object.fromEntries(["title", "client", "year", "category", "slug", "summary", "description", "video", "size", "style"].map(k => [k, f.elements.namedItem(k).value.trim()]));
+  body.featured = f.elements.namedItem("featured").checked;
   body.cover = $('[data-name="cover"]').dataset.value; body.gallery = gallery;
   btn.disabled = true; $("#work-msg").className = "msg"; $("#work-msg").textContent = "Saving…";
   try {
@@ -159,22 +161,38 @@ $("#work-form").onsubmit = async e => {
 
 /* ---------- site content ---------- */
 const SCHEMA = [
-  { group: "Hero", fields: [
-    { k: "hero_kicker", l: "Small label above the logo (leave empty to hide)" },
-    { k: "hero_text", l: "Text under the logo", t: "textarea" },
-    { k: "hero_image", l: "Hero photo (optional, shown behind the slash)", t: "image" },
-    { k: "showreel", l: "Showreel video link (YouTube or Vimeo, leave empty to hide the play button)" },
-    { k: "tagline", l: "Tagline for search engines" } ] },
-  { group: "Moving tape", fields: [{ k: "tape", l: "Words", t: "list", add: "Add words", item: [{ k: "text", l: "Words" }] }] },
-  { group: "Work section", fields: [{ k: "work_title", l: "Title (white)" }, { k: "work_title_accent", l: "Title (burgundy)" }] },
-  { group: "Big statement", fields: [{ k: "statement_label", l: "Small label" }, { k: "statement", l: "Statement (white)" }, { k: "statement_accent", l: "Statement (burgundy)" }] },
-  { group: "Process", fields: [{ k: "process_title", l: "Title (white)" }, { k: "process_title_accent", l: "Title (burgundy)" },
-    { k: "process", l: "Steps, in order", t: "list", add: "Add step", item: [{ k: "label", l: "Small label" }, { k: "title", l: "Title" }, { k: "text", l: "Text", t: "textarea" }] }] },
-  { group: "Clients", fields: [{ k: "clients_title", l: "Title" },
-    { k: "clients", l: "Logos (the section shows once you add one)", t: "list", add: "Add logo", item: [{ k: "name", l: "Brand name" }, { k: "logo", l: "Logo", t: "image", logo: true }] }] },
-  { group: "Contact", fields: [{ k: "contact_title", l: "Title (white)" }, { k: "contact_title_accent", l: "Title (burgundy)" }, { k: "contact_text", l: "Text", t: "textarea" },
-    { k: "email", l: "Email" }, { k: "phone", l: "Phone" }, { k: "whatsapp", l: "WhatsApp number (digits with country code, e.g. 201001234567)" }] },
-  { group: "Social and footer", fields: [{ k: "instagram", l: "Instagram link" }, { k: "behance", l: "Behance link" }, { k: "linkedin", l: "LinkedIn link" }, { k: "tiktok", l: "TikTok link" }, { k: "copyright", l: "Footer text" }] },
+  { group: "General: contact and social", fields: [
+    { k: "email", l: "Email" }, { k: "phone", l: "Phone" }, { k: "whatsapp", l: "WhatsApp number (digits with country code, e.g. 201001234567)" },
+    { k: "address", l: "Address" }, { k: "instagram", l: "Instagram link" }, { k: "behance", l: "Behance link" }, { k: "linkedin", l: "LinkedIn link" }, { k: "tiktok", l: "TikTok link" },
+    { k: "copyright", l: "Footer text" }, { k: "tagline", l: "Tagline for search engines" },
+    { k: "cta_title", l: "Bottom call to action (white)" }, { k: "cta_accent", l: "Bottom call to action (burgundy)" } ] },
+  { group: "Home: hero", fields: [
+    { k: "hero_label", l: "Small label" }, { k: "hero_line1", l: "Headline line 1" }, { k: "hero_line2", l: "Headline line 2 (white part)" }, { k: "hero_line2_accent", l: "Headline line 2 (burgundy part)" },
+    { k: "hero_text", l: "Text under the headline", t: "textarea" }, { k: "hero_image", l: "Hero photo", t: "image" }, { k: "hero_strip", l: "Small strip text" },
+    { k: "showreel", l: "Showreel video link (YouTube or Vimeo, empty hides the play button)" },
+    { k: "tape", l: "Moving tape words", t: "list", add: "Add words", item: [{ k: "text", l: "Words" }] } ] },
+  { group: "Home: sections", fields: [
+    { k: "work_title", l: "Work title (white)" }, { k: "work_title_accent", l: "Work title (burgundy)" },
+    { k: "statement_title", l: "Statement (white)" }, { k: "statement_accent", l: "Statement (burgundy)" }, { k: "statement_text", l: "Statement text", t: "textarea" },
+    { k: "clients_title", l: "Clients title" },
+    { k: "clients", l: "Client logos (the section shows once you add one)", t: "list", add: "Add logo", item: [{ k: "name", l: "Brand name" }, { k: "logo", l: "Logo", t: "image", logo: true }] } ] },
+  { group: "Beliefs (Home and About)", fields: [{ k: "beliefs_label", l: "Small label" },
+    { k: "beliefs", l: "Beliefs", t: "list", add: "Add belief", item: [{ k: "title", l: "White part" }, { k: "accent", l: "Burgundy part" }] }] },
+  { group: "Services page", fields: [
+    { k: "services_label", l: "Small label" }, { k: "services_title", l: "Title (white)" }, { k: "services_accent", l: "Title (burgundy)" }, { k: "services_intro", l: "Intro", t: "textarea" },
+    { k: "services", l: "Services", t: "list", add: "Add service", item: [{ k: "title", l: "Name" }, { k: "text", l: "Text", t: "textarea" }, { k: "points", l: "What's included (one per line)", t: "textarea" }, { k: "image", l: "Photo", t: "image" }] },
+    { k: "process_title", l: "Process title (white)" }, { k: "process_title_accent", l: "Process title (burgundy)" },
+    { k: "process", l: "Process steps, in order", t: "list", add: "Add step", item: [{ k: "label", l: "Small label" }, { k: "title", l: "Title" }, { k: "text", l: "Text", t: "textarea" }] } ] },
+  { group: "About page", fields: [
+    { k: "about_label", l: "Small label" }, { k: "about_title", l: "Title (white)" }, { k: "about_accent", l: "Title (burgundy)" }, { k: "about_text", l: "Intro", t: "textarea" },
+    { k: "about_image1", l: "Photo 1", t: "image" }, { k: "about_image2", l: "Photo 2", t: "image" },
+    { k: "story_title", l: "Story title (white)" }, { k: "story_accent", l: "Story title (burgundy)" }, { k: "story_text", l: "Story", t: "textarea" },
+    { k: "stats", l: "Numbers (e.g. 40+ brands)", t: "list", add: "Add number", item: [{ k: "value", l: "Number" }, { k: "label", l: "Label" }] },
+    { k: "team_title", l: "Team title" },
+    { k: "team", l: "Team (the section shows once you add someone)", t: "list", add: "Add person", item: [{ k: "name", l: "Name" }, { k: "role", l: "Role" }, { k: "photo", l: "Photo", t: "image" }] },
+    { k: "about_statement", l: "Closing statement (white)" }, { k: "about_statement_accent", l: "Closing statement (burgundy)" } ] },
+  { group: "Studio page", fields: [{ k: "studio_label", l: "Small label" }, { k: "studio_title", l: "Title (white)" }, { k: "studio_accent", l: "Title (burgundy)" }, { k: "studio_intro", l: "Intro", t: "textarea" }] },
+  { group: "Contact page", fields: [{ k: "contact_label", l: "Small label" }, { k: "contact_title", l: "Title (white)" }, { k: "contact_accent", l: "Title (burgundy)" }, { k: "contact_text", l: "Text", t: "textarea" }] },
 ];
 let settings = {};
 

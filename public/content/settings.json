@@ -1,58 +1,86 @@
 {
   "tagline": "Creative marketing studio",
-  "hero_kicker": "Based in Cairo",
-  "hero_text": "We build brands people remember, make content they stop for, and run the media that turns attention into growth.",
-  "hero_image": "",
-  "showreel": "",
-  "tape": [
-    {
-      "text": "Make them stop"
-    },
-    {
-      "text": "Ideas without limits"
-    },
-    {
-      "text": "Different gets noticed"
-    },
-    {
-      "text": "Think different"
-    }
-  ],
-  "work_title": "The work",
-  "work_title_accent": "speaks.",
-  "statement_label": "The idea in the name",
-  "statement": "Uncontrolled ideas.",
-  "statement_accent": "Controlled results.",
-  "process_title": "Break it.",
-  "process_title_accent": "Build it.",
-  "process": [
-    {
-      "label": "Break",
-      "title": "Break the pattern",
-      "text": "We find what everyone else is doing, then go the other way."
-    },
-    {
-      "label": "Build",
-      "title": "Build the idea",
-      "text": "One clear idea, turned into a brand, content and production people remember."
-    },
-    {
-      "label": "Perform",
-      "title": "Make it perform",
-      "text": "Media, testing and monthly reporting, so creativity turns into results."
-    }
-  ],
-  "clients_title": "Brands we've worked with",
-  "clients": [],
-  "contact_title": "Ready to",
-  "contact_title_accent": "stand out?",
-  "contact_text": "Tell us about your brand. We reply within one working day.",
   "email": "info@unctrl-eg.com",
   "phone": "",
   "whatsapp": "",
+  "address": "Cairo, Egypt",
   "instagram": "https://instagram.com/",
   "behance": "https://behance.net/",
   "linkedin": "https://linkedin.com/",
   "tiktok": "",
-  "copyright": "© 2026 Uncontrolled Group"
+  "copyright": "© 2026 Uncontrolled Group",
+
+  "hero_label": "Creative marketing studio",
+  "hero_line1": "The usual",
+  "hero_line2": "is",
+  "hero_line2_accent": "boring.",
+  "hero_text": "We build brands people remember, make content they stop for, and run the media that turns attention into growth.",
+  "hero_image": "/images/hero.jpg",
+  "hero_strip": "Ideas · Culture · Impact",
+  "showreel": "",
+  "tape": [
+    { "text": "Make them stop" },
+    { "text": "Ideas without limits" },
+    { "text": "Different gets noticed" },
+    { "text": "Think different" }
+  ],
+  "work_title": "Selected",
+  "work_title_accent": "work.",
+  "statement_title": "Attention isn't given.",
+  "statement_accent": "It's created.",
+  "statement_text": "Different is the strategy. Every brand we touch gets one idea worth remembering, and a plan to make sure people do.",
+  "beliefs_label": "What we believe",
+  "beliefs": [
+    { "title": "Make them", "accent": "stop." },
+    { "title": "Think different.", "accent": "Create different." },
+    { "title": "Ideas without", "accent": "limits." },
+    { "title": "Different gets", "accent": "noticed." }
+  ],
+  "clients_title": "Brands we've worked with",
+  "clients": [],
+  "cta_title": "Good ideas deserve",
+  "cta_accent": "more.",
+
+  "services_label": "Services",
+  "services_title": "One studio.",
+  "services_accent": "The whole journey.",
+  "services_intro": "Strategy, branding, content and media under one roof, so the idea that starts the project is the same one that reaches your audience.",
+  "services": [
+    { "title": "Strategy", "text": "Positioning, audience and a plan with numbers attached.", "points": "Brand positioning\nAudience and competitor research\nCampaign planning\nMarketing calendars", "image": "/images/portrait.jpg" },
+    { "title": "Branding", "text": "Identity, voice and visual systems built to stand out.", "points": "Logo and identity\nTone of voice\nBrand guidelines\nPackaging and print", "image": "/images/studio-1.jpg" },
+    { "title": "Content & production", "text": "Photo, video and reels with a cinematic eye.", "points": "Photo and video shoots\nReels and short-form video\nMotion graphics\nCopywriting", "image": "/images/reel.jpg" },
+    { "title": "Media & growth", "text": "Paid media, social and reporting that shows what worked.", "points": "Meta, TikTok and Google ads\nSocial media management\nInfluencer campaigns\nMonthly reporting", "image": "/images/studio-2.jpg" }
+  ],
+  "process_title": "Break it.",
+  "process_title_accent": "Build it.",
+  "process": [
+    { "label": "Break", "title": "Break the pattern", "text": "We find what everyone else is doing, then go the other way." },
+    { "label": "Build", "title": "Build the idea", "text": "One clear idea, turned into a brand, content and production people remember." },
+    { "label": "Perform", "title": "Make it perform", "text": "Media, testing and monthly reporting, so creativity turns into results." }
+  ],
+
+  "about_label": "The studio",
+  "about_title": "Before we create, we",
+  "about_accent": "think.",
+  "about_text": "Strategy first, then the idea, then the craft. A senior team of strategists, creatives and producers who say no to templates.",
+  "about_image1": "/images/studio-1.jpg",
+  "about_image2": "/images/studio-2.jpg",
+  "story_title": "More than",
+  "story_accent": "marketing.",
+  "story_text": "Brands, content and media for businesses that would rather be remembered than be safe. We work with a small number of clients at a time, so every project gets the senior people who pitched it.",
+  "about_statement": "Uncontrolled ideas.",
+  "about_statement_accent": "Controlled results.",
+  "stats": [],
+  "team_title": "The team",
+  "team": [],
+
+  "studio_label": "Studio",
+  "studio_title": "The work",
+  "studio_accent": "speaks.",
+  "studio_intro": "Campaigns, identities, shoots and reels we've made for brands that wanted to be noticed.",
+
+  "contact_label": "Contact",
+  "contact_title": "Ready to",
+  "contact_accent": "stand out?",
+  "contact_text": "Tell us about your brand. We reply within one working day."
 }

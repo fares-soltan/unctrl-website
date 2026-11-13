@@ -4,11 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Project | UNCTRL</title>
+<meta name="description" content="A project by UNCTRL, creative marketing studio.">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0B0B0B">
+<meta property="og:title" content="Project | UNCTRL">
+<meta property="og:description" content="A project by UNCTRL, creative marketing studio.">
 <meta property="og:image" content="https://unctrl-eg.com/og-image-1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -17,40 +23,46 @@
 <body id="top" data-page="project">
 <div class="grain" aria-hidden="true"></div>
 <div class="cursor" aria-hidden="true"><span>View</span></div>
-
 <header class="site-head">
   <div class="bar">
     <a class="brand" href="/" aria-label="UNCTRL home">
       <img class="icon" src="/assets/brand/unctrl-icon-gradient.svg" alt="">
       <img class="word" src="/assets/brand/unctrl-logo-gradient.svg" alt="UNCTRL">
     </a>
-    <nav class="nav" aria-label="Main">
-      <a href="/#work">Work</a>
-      <a href="/#process">Process</a>
-      <a class="cta" href="/#contact">Start a project</a>
-    </nav>
+    <nav class="nav" aria-label="Main"><a href="/">Home</a><a href="/services">Services</a><a href="/about">About</a><a href="/studio" aria-current=page>Studio</a><a href="/contact">Contact</a></nav>
+    <a class="btn btn-solid nav-cta" href="/contact">Start a project</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav"><span></span><span></span><span class="sr-only">Menu</span></button>
   </div>
 </header>
-
-<main id="project"></main>
-
+<div class="mnav" id="mnav" hidden>
+  <nav aria-label="Mobile"><a href="/">Home</a><a href="/services">Services</a><a href="/about">About</a><a href="/studio" aria-current=page>Studio</a><a href="/contact">Contact</a></nav>
+  <a class="btn btn-solid" href="/contact">Start a project</a>
+</div>
+<main>
+<div id="project"></div><section class="cta-band">
+  <span class="glow g1" aria-hidden="true"></span>
+  <div class="wrap">
+    <h2 class="display reveal" id="cta-title"></h2>
+    <div class="cta-actions fade"><a class="btn btn-white" href="/contact">Start a project</a><a class="btn btn-line" id="cta-mail" href="/contact">Email us</a></div>
+  </div>
+</section>
+</main>
 <footer class="site-foot">
   <div class="wrap">
-    <div class="foot-top">
-      <h2 class="display">Let's make<br><span class="accent">some noise.</span></h2>
-      <a class="btn btn-solid" id="foot-mail" href="/#contact">Start a project</a>
-    </div>
     <div class="foot-cols">
-      <div><span class="label">Navigate</span><a href="/#work">Work</a><a href="/#process">Process</a><a href="/#contact">Contact</a></div>
+      <div><span class="label">Navigate</span><a href="/">Home</a><a href="/services">Services</a><a href="/about">About</a><a href="/studio">Studio</a><a href="/contact">Contact</a></div>
       <div><span class="label">Say hello</span><div id="foot-contact"></div></div>
       <div><span class="label">Follow</span><div id="foot-social"></div></div>
       <div class="foot-up"><a href="#top" class="up" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a></div>
     </div>
     <img class="foot-logo" src="/assets/brand/unctrl-logo-white.svg" alt="" aria-hidden="true">
-    <div class="row"><span id="foot-copy"></span><span>Cairo, Egypt</span></div>
+    <div class="row"><span id="foot-copy"></span><span id="foot-address"></span></div>
   </div>
 </footer>
-
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Video">
+  <button class="btn btn-line close" type="button">Close</button>
+  <div class="frame"></div>
+</div>
 <script src="/assets/app.js"></script>
 </body>
 </html>

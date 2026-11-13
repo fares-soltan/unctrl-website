@@ -29,7 +29,7 @@
   <aside class="side">
     <a href="/" class="side-logo" target="_blank" rel="noopener"><img src="/assets/brand/unctrl-logo-gradient.svg" alt="UNCTRL"></a>
     <nav>
-      <button data-tab="work" class="on">Portfolio</button>
+      <button data-tab="work" class="on">Studio</button>
       <button data-tab="settings">Site content</button>
       <button data-tab="messages">Messages <span class="badge" id="unread" hidden></span></button>
     </nav>
@@ -42,7 +42,7 @@
   <main class="main">
     <!-- portfolio -->
     <section data-panel="work">
-      <header class="top"><div><h2>Portfolio</h2><p class="sub">Use the arrows to change the order. Projects at the top show first on the website.</p></div><button class="btn primary" id="add-work">Add project</button></header>
+      <header class="top"><div><h2>Studio</h2><p class="sub">Every project shows on the Studio page. Use the arrows to change the order. Ticked projects also show on the home page.</p></div><button class="btn primary" id="add-work">Add project</button></header>
       <div id="work-list" class="list"></div>
     </section>
 
@@ -80,6 +80,7 @@
         <label>Card size<select name="size"><option value="normal">Normal</option><option value="tall">Tall</option></select></label>
         <label>Card colour (no cover)<select name="style"><option>Auto</option><option>Dark</option><option>Burgundy</option><option>Light</option></select></label>
       </div>
+      <label class="check"><input type="checkbox" name="featured"> Show on the home page</label>
       <div class="field"><span class="flabel">Cover image</span><div class="img-field" data-name="cover"></div></div>
       <label>Short summary<textarea name="summary" rows="2" maxlength="600"></textarea></label>
       <label>Full description<textarea name="description" rows="6" maxlength="8000"></textarea></label>

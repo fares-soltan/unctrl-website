@@ -5,13 +5,14 @@
     "client": "Client name",
     "category": "Branding",
     "year": "2026",
+    "featured": true,
     "size": "normal",
-    "cover": "",
-    "summary": "Sample project. Replace it from the control panel.",
+    "style": "Dark",
+    "cover": "/images/portrait.jpg",
+    "summary": "Sample project. Replace it from the admin panel.",
     "description": "Tell the story of the project here: what the client needed, what you made, and what changed after it went live.",
     "video": "",
-    "gallery": [],
-    "style": "Dark"
+    "gallery": ["/images/studio-1.jpg", "/images/studio-2.jpg"]
   },
   {
     "slug": "social-media-reel",
@@ -19,13 +20,14 @@
     "client": "Client name",
     "category": "Content",
     "year": "2026",
+    "featured": true,
     "size": "tall",
-    "cover": "",
+    "style": "Auto",
+    "cover": "/images/reel.jpg",
     "summary": "Sample project with a video link.",
     "description": "Replace this text with the project details.",
     "video": "https://www.youtube.com/watch?v=aqz-KE-bpKQ",
-    "gallery": [],
-    "style": "Auto"
+    "gallery": []
   },
   {
     "slug": "content-production",
@@ -33,13 +35,14 @@
     "client": "Client name",
     "category": "Content",
     "year": "2026",
+    "featured": true,
     "size": "normal",
+    "style": "Light",
     "cover": "",
-    "summary": "Sample project. Replace it from the control panel.",
+    "summary": "Sample project. Replace it from the admin panel.",
     "description": "Replace this text with the project details.",
     "video": "",
-    "gallery": [],
-    "style": "Light"
+    "gallery": []
   },
   {
     "slug": "campaign",
@@ -47,13 +50,14 @@
     "client": "Client name",
     "category": "Campaigns",
     "year": "2025",
+    "featured": true,
     "size": "normal",
+    "style": "Burgundy",
     "cover": "",
-    "summary": "Sample project. Replace it from the control panel.",
+    "summary": "Sample project. Replace it from the admin panel.",
     "description": "Replace this text with the project details.",
     "video": "",
-    "gallery": [],
-    "style": "Burgundy"
+    "gallery": []
   },
   {
     "slug": "rebrand-launch",
@@ -61,12 +65,13 @@
     "client": "Client name",
     "category": "Branding",
     "year": "2025",
+    "featured": false,
     "size": "normal",
-    "cover": "",
-    "summary": "Sample project. Replace it from the control panel.",
+    "style": "Dark",
+    "cover": "/images/studio-2.jpg",
+    "summary": "Sample project. Replace it from the admin panel.",
     "description": "Replace this text with the project details.",
     "video": "",
-    "gallery": [],
-    "style": "Dark"
+    "gallery": []
   }
 ]

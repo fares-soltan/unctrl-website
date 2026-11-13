@@ -25,25 +25,52 @@ async function ensureSchema(env) {
   schemaReady = true;
 }
 
-// First run: copy the starter content from public/content/*.json into the database
-async function ensureSeed(env, request) {
-  await ensureSchema(env);
-  const seeded = await env.DB.prepare("SELECT value FROM kv WHERE key = 'seeded'").first();
-  if (seeded) return;
+// Starter content lives in public/content/*.json.
+// SEED_VERSION bumps when the site structure changes; older databases are migrated without touching real projects.
+const SEED_VERSION = "2";
+const SAMPLE_SLUGS = ["brand-identity", "social-media-reel", "content-production", "campaign", "rebrand-launch"];
+const CARRY_OVER = ["email", "phone", "whatsapp", "address", "instagram", "behance", "linkedin", "tiktok", "copyright", "showreel", "clients", "tape", "process", "process_title", "process_title_accent"];
+let defaultsCache = null;
+async function starter(env, request) {
+  if (defaultsCache) return defaultsCache;
   const origin = new URL(request.url).origin;
   const [settings, work] = await Promise.all([
     env.ASSETS.fetch(new Request(origin + "/content/settings.json")).then(r => r.json()),
     env.ASSETS.fetch(new Request(origin + "/content/work.json")).then(r => r.json()),
   ]);
-  const stmts = [env.DB.prepare("INSERT OR REPLACE INTO kv (key, value) VALUES ('settings', ?)").bind(JSON.stringify(settings))];
-  work.forEach((w, i) => stmts.push(env.DB.prepare("INSERT OR IGNORE INTO work (slug, position, data, updated_at) VALUES (?, ?, ?, ?)").bind(w.slug, i, JSON.stringify(w), new Date().toISOString())));
-  stmts.push(env.DB.prepare("INSERT OR REPLACE INTO kv (key, value) VALUES ('seeded', '1')"));
+  return (defaultsCache = { settings, work });
+}
+
+async function ensureSeed(env, request) {
+  await ensureSchema(env);
+  const row = await env.DB.prepare("SELECT value FROM kv WHERE key = 'seeded'").first();
+  const version = row ? row.value : null;
+  if (version === SEED_VERSION) return;
+  const { settings, work } = await starter(env, request);
+  const now = new Date().toISOString();
+  const stmts = [];
+  if (!version) {
+    stmts.push(env.DB.prepare("INSERT OR REPLACE INTO kv (key, value) VALUES ('settings', ?)").bind(JSON.stringify(settings)));
+    work.forEach((w, i) => stmts.push(env.DB.prepare("INSERT OR IGNORE INTO work (slug, position, data, updated_at) VALUES (?, ?, ?, ?)").bind(w.slug, i, JSON.stringify(w), now)));
+  } else {
+    // migrate: keep contact details, socials and lists the client may have edited; take the new page content
+    const old = await env.DB.prepare("SELECT value FROM kv WHERE key = 'settings'").first();
+    const prev = old ? JSON.parse(old.value) : {};
+    const next = { ...settings };
+    CARRY_OVER.forEach(k => { if (prev[k] !== undefined && prev[k] !== "" && !(Array.isArray(prev[k]) && !prev[k].length)) next[k] = prev[k]; });
+    stmts.push(env.DB.prepare("INSERT OR REPLACE INTO kv (key, value) VALUES ('settings', ?)").bind(JSON.stringify(next)));
+    work.filter(w => SAMPLE_SLUGS.includes(w.slug)).forEach(w =>
+      stmts.push(env.DB.prepare("UPDATE work SET data = ?, updated_at = ? WHERE slug = ?").bind(JSON.stringify(w), now, w.slug)));
+  }
+  stmts.push(env.DB.prepare("INSERT OR REPLACE INTO kv (key, value) VALUES ('seeded', ?)").bind(SEED_VERSION));
   await env.DB.batch(stmts);
 }
 
-async function getSettings(env) {
+// stored settings on top of the starter defaults, so new fields always have a value
+async function getSettings(env, request) {
   const row = await env.DB.prepare("SELECT value FROM kv WHERE key = 'settings'").first();
-  return row ? JSON.parse(row.value) : {};
+  const { settings: defaults } = await starter(env, request);
+  return { ...defaults, ...(row ? JSON.parse(row.value) : {}) };
 }
 async function getWork(env) {
   const { results } = await env.DB.prepare("SELECT id, slug, data FROM work ORDER BY position ASC, id ASC").all();
@@ -86,7 +113,7 @@ const str = (v, max = 5000) => (v == null ? "" : String(v)).slice(0, max);
 function cleanWork(b) {
   return {
     title: str(b.title, 120), client: str(b.client, 120), category: str(b.category, 60), year: str(b.year, 10),
-    size: b.size === "tall" ? "tall" : "normal", style: ["Auto", "Dark", "Burgundy", "Light"].includes(b.style) ? b.style : "Auto",
+    featured: !!b.featured, size: b.size === "tall" ? "tall" : "normal", style: ["Auto", "Dark", "Burgundy", "Light"].includes(b.style) ? b.style : "Auto",
     cover: str(b.cover, 500), summary: str(b.summary, 600), description: str(b.description, 8000), video: str(b.video, 500),
     gallery: Array.isArray(b.gallery) ? b.gallery.slice(0, 40).map(g => str(g, 500)).filter(Boolean) : [],
   };
@@ -104,8 +131,7 @@ async function handleApi(request, env, url) {
 
   // public
   if (path === "/api/content" && method === "GET") {
-    const [settings, work] = await Promise.all([getSettings(env), getWork(env)]);
-    delete settings.form_key;
+    const [settings, work] = await Promise.all([getSettings(env, request), getWork(env)]);
     return json({ settings, work });
   }
   if (path === "/api/contact" && method === "POST") {
@@ -135,7 +161,7 @@ async function handleApi(request, env, url) {
 
     if (path === "/api/admin/me") return json({ ok: true });
 
-    if (path === "/api/admin/settings" && method === "GET") return json(await getSettings(env));
+    if (path === "/api/admin/settings" && method === "GET") return json(await getSettings(env, request));
     if (path === "/api/admin/settings" && method === "PUT") {
       const b = await request.json();
       if (typeof b !== "object" || Array.isArray(b)) return bad("Invalid settings.");

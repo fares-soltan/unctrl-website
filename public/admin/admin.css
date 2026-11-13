@@ -106,3 +106,5 @@ textarea{resize:vertical}
   .row2{grid-template-columns:1fr}
 }
 @media (min-width:821px){[data-panel="settings"] .top{position:sticky;top:0;z-index:5;background:var(--bg);padding:16px 0;margin-top:-16px}}
+.check{display:flex;flex-direction:row;align-items:center;gap:10px;cursor:pointer}
+.check input{width:18px;height:18px;accent-color:#751026;margin:0}
