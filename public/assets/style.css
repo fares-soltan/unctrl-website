@@ -475,3 +475,11 @@ main{overflow-x:clip}
 .p-cover{aspect-ratio:16/9;background:var(--panel-2)}
 .p-cover img{width:100%;height:100%;object-fit:cover}
 .p-gallery img{aspect-ratio:4/3;object-fit:cover;background:var(--panel-2);border:1px solid var(--line)}
+/* phone: keep the three project chips on one row, smaller */
+@media (max-width:640px){
+  .p-head h1{font-size:clamp(28px,8.4vw,34px)}
+  .p-meta{flex-wrap:nowrap;gap:6px}
+  .p-meta div{flex:0 1 auto;min-width:0;flex-direction:column;align-items:flex-start;gap:3px;padding:8px 12px;border-radius:14px}
+  .p-meta div span:last-child{font-size:11px;line-height:1.35}
+  .p-meta .label{font-size:8px}
+}
