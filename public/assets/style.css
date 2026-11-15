@@ -421,8 +421,8 @@ form.cform{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:30px;bord
 .contact-social a:hover{color:var(--white)}
 
 @media (max-width:1080px){
-  .nav{display:none}
-  .menu-btn{display:flex}
+  .nav a{font-size:10px;letter-spacing:.12em;padding:10px 9px}
+  .nav-cta{padding:12px 16px;font-size:10px}
   .svc-grid,.beliefs{grid-template-columns:1fr 1fr}
 }
 @media (max-width:880px){
@@ -483,3 +483,6 @@ main{overflow-x:clip}
   .p-meta div span:last-child{font-size:11px;line-height:1.35}
   .p-meta .label{font-size:8px}
 }
+/* the full nav stays visible in browser windows; the menu takes over only on small screens */
+@media (max-width:880px){.nav-cta{display:none}}
+@media (max-width:720px){.nav{display:none}.menu-btn{display:flex}}
