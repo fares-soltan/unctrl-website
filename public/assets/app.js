@@ -171,7 +171,7 @@ const PAGES = {
     text("#statement-text", s.statement_text);
     text("#svc-label", s.services_label);
     set("#svc-title", title2(s.services_title, s.services_accent));
-    set("#svc-grid", (s.services || []).map((v, i) => `<a class="svc-card" href="/services#s${i + 1}">${v.image ? `<img src="${esc(v.image)}" alt="" loading="lazy">` : ""}<span class="num">${pad(i)}</span><h3>${esc(v.title)}</h3><p>${esc(v.text)}</p></a>`).join(""));
+    set("#svc-grid", (s.services || []).map((v, i) => `<a class="svc-card" href="/services#s${i + 1}">${v.image ? `<img src="${esc(v.image)}" alt="" loading="lazy">` : ""}<h3>${esc(v.title)}</h3><p>${esc(v.text)}</p></a>`).join(""));
     beliefs(s);
     const logos = (s.clients || []).filter(c => c.logo);
     if (logos.length) {
@@ -185,7 +185,6 @@ const PAGES = {
     set("#services-title", title2(s.services_title, s.services_accent));
     text("#services-intro", s.services_intro);
     set("#svc-list", (s.services || []).map((v, i) => `<article class="svc-row" id="s${i + 1}">
-      <span class="num">${pad(i)}</span>
       <div><h2 class="display">${esc(v.title)}</h2><p class="txt">${esc(v.text)}</p>
         ${v.points ? `<ul>${String(v.points).split("\n").map(p => p.trim()).filter(Boolean).map(p => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}</div>
       ${v.image ? `<div class="pic"><img src="${esc(v.image)}" alt="" loading="lazy"></div>` : "<div></div>"}
@@ -257,9 +256,9 @@ const PAGES = {
       </div>
     </div>
     <div class="wrap">
+      ${p.cover ? `<div class="p-cover fade"><img src="${esc(p.cover)}" alt="${esc(p.title)}"></div>` : ""}
       <div class="p-body fade"><p class="p-sum">${esc(p.summary || "")}</p><p>${esc(p.description || "")}</p></div>
       ${p.video ? `<div class="p-video fade">${videoEmbed(p.video)}</div>` : ""}
-      ${p.cover ? `<div class="p-cover fade"><img src="${esc(p.cover)}" alt="${esc(p.title)}"></div>` : ""}
       ${gallery.length ? `<div class="p-gallery">${gallery.map(g => `<img class="fade" src="${esc(g)}" alt="" loading="lazy">`).join("")}</div>` : ""}
     </div>
     ${work.length > 1 ? `<div class="wrap p-next"><a href="/project?p=${encodeURIComponent(next.slug)}"><span class="label">Next project</span><span class="display">${esc(next.title)}</span></a></div>` : ""}`;
